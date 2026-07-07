@@ -1,5 +1,5 @@
 {
-  "name": "Kannada Kali",
+  "name": "Kannada Kaliyona",
   "description": "An interactive tutorial to learn Kannada. Features vowels, consonants, kagunitha, ottakshara, arkavattu, interactive flashcards, word examples, and reading practice with stories and poems.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]

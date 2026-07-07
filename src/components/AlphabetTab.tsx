@@ -116,17 +116,47 @@ const allKannadaAlphabets = [
   ...consonants.map(c => c.letter)
 ];
 
+const vowelLetters = [
+  ...vowels.map(v => v.letter),
+  ...yogavahas.map(y => y.letter)
+];
+
+const consonantLetters = consonants.map(c => c.letter);
+
+// Groups consonants into 5 groups of 5, then groups of 4 for the remaining
+const groupedConsonantLetters: string[][] = [];
+// First 5 groups of 5
+for (let i = 0; i < 5; i++) {
+  const start = i * 5;
+  if (start < consonantLetters.length) {
+    groupedConsonantLetters.push(consonantLetters.slice(start, start + 5));
+  }
+}
+// Then groups of 4 for the remaining
+let remainingStart = 25;
+while (remainingStart < consonantLetters.length) {
+  groupedConsonantLetters.push(consonantLetters.slice(remainingStart, remainingStart + 4));
+  remainingStart += 4;
+}
+
 export default function AlphabetTab() {
   const [activeLevelIdx, setActiveLevelIdx] = useState<number>(0); // 0 to 6 are levels, 7 is "All Alphabets"
+  const [allLettersFilter, setAllLettersFilter] = useState<'all' | 'vowels' | 'consonants'>('all');
   const [selectedGuideItem, setSelectedGuideItem] = useState<string>('ಅ'); // selected letter or word
   const [isWroteCorrectly, setIsWroteCorrectly] = useState(false);
   const [showSparkles, setShowSparkles] = useState(false);
   const [ttsState, setTtsState] = useState<'idle' | 'playing' | 'error'>('idle');
 
-  // Load the first letter of the level automatically when level changes
+  // Load the first letter of the level automatically when level changes or Level 8 filter changes
   useEffect(() => {
     if (activeLevelIdx === 7) {
-      setSelectedGuideItem('ಅ');
+      if (allLettersFilter === 'vowels') {
+        setSelectedGuideItem(vowelLetters[0]);
+      } else if (allLettersFilter === 'consonants') {
+        setSelectedGuideItem(consonantLetters[0]);
+      } else {
+        setSelectedGuideItem(allKannadaAlphabets[0]);
+      }
     } else {
       const currentLevel = levelsData[activeLevelIdx];
       if (currentLevel && currentLevel.letters.length > 0) {
@@ -134,7 +164,14 @@ export default function AlphabetTab() {
       }
     }
     setIsWroteCorrectly(false);
-  }, [activeLevelIdx]);
+  }, [activeLevelIdx, allLettersFilter]);
+
+  const getFilteredLetters = () => {
+    if (activeLevelIdx !== 7) return [];
+    if (allLettersFilter === 'vowels') return vowelLetters;
+    if (allLettersFilter === 'consonants') return consonantLetters;
+    return allKannadaAlphabets;
+  };
 
   const findLetterMetadata = (char: string) => {
     const all = [...vowels, ...consonants, ...yogavahas];
@@ -179,9 +216,10 @@ export default function AlphabetTab() {
   const handleNextGuide = () => {
     if (activeLevelIdx === 7) {
       // All alphabets navigation
-      const currentIdx = allKannadaAlphabets.indexOf(selectedGuideItem);
-      if (currentIdx !== -1 && currentIdx < allKannadaAlphabets.length - 1) {
-        handleItemSelect(allKannadaAlphabets[currentIdx + 1]);
+      const list = getFilteredLetters();
+      const currentIdx = list.indexOf(selectedGuideItem);
+      if (currentIdx !== -1 && currentIdx < list.length - 1) {
+        handleItemSelect(list[currentIdx + 1]);
       }
     } else {
       // Level navigation
@@ -209,9 +247,10 @@ export default function AlphabetTab() {
 
   const handlePrevGuide = () => {
     if (activeLevelIdx === 7) {
-      const currentIdx = allKannadaAlphabets.indexOf(selectedGuideItem);
+      const list = getFilteredLetters();
+      const currentIdx = list.indexOf(selectedGuideItem);
       if (currentIdx > 0) {
-        handleItemSelect(allKannadaAlphabets[currentIdx - 1]);
+        handleItemSelect(list[currentIdx - 1]);
       }
     } else {
       const currentLevel = levelsData[activeLevelIdx];
@@ -239,7 +278,8 @@ export default function AlphabetTab() {
   // Determine disable states for navigation
   const isFirstGuide = () => {
     if (activeLevelIdx === 7) {
-      return allKannadaAlphabets.indexOf(selectedGuideItem) === 0;
+      const list = getFilteredLetters();
+      return list.indexOf(selectedGuideItem) === 0;
     }
     const currentLevel = levelsData[activeLevelIdx];
     return selectedGuideItem === currentLevel?.letters[0];
@@ -247,7 +287,8 @@ export default function AlphabetTab() {
 
   const isLastGuide = () => {
     if (activeLevelIdx === 7) {
-      return allKannadaAlphabets.indexOf(selectedGuideItem) === allKannadaAlphabets.length - 1;
+      const list = getFilteredLetters();
+      return list.indexOf(selectedGuideItem) === list.length - 1;
     }
     const currentLevel = levelsData[activeLevelIdx];
     if (currentLevel?.formingWords && currentLevel.formingWords.length > 0) {
@@ -413,28 +454,108 @@ export default function AlphabetTab() {
                 </p>
               </div>
 
-              <div className="flex flex-col gap-3">
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-                  Select any letter:
-                </span>
-                <div className="grid grid-cols-5 sm:grid-cols-6 gap-2 max-h-[360px] overflow-y-auto pr-1">
-                  {allKannadaAlphabets.map((char) => {
-                    const isSelected = selectedGuideItem === char;
-                    return (
-                      <button
-                        key={char}
-                        onClick={() => handleItemSelect(char)}
-                        className={`aspect-square rounded-xl flex items-center justify-center transition-all border text-lg font-black min-h-[48px] ${
-                          isSelected
-                            ? 'bg-[#de2910] border-red-600 text-white shadow-sm ring-2 ring-red-400 ring-offset-1'
-                            : 'bg-slate-50 border-slate-200/60 text-slate-800 hover:bg-red-50/50 hover:border-red-200'
-                        }`}
-                      >
-                        {char}
-                      </button>
-                    );
-                  })}
-                </div>
+              {/* Vowel / Consonant / All Selection Tabs */}
+              <div className="bg-slate-100 p-1 rounded-2xl border border-slate-200/60 flex gap-1 w-full">
+                <button
+                  onClick={() => setAllLettersFilter('all')}
+                  className={`flex-1 py-2.5 rounded-xl text-xs font-extrabold transition-all min-h-[38px] ${
+                    allLettersFilter === 'all'
+                      ? 'bg-white text-[#de2910] shadow-sm border border-slate-200/30'
+                      : 'text-slate-500 hover:text-slate-800'
+                  }`}
+                >
+                  All (ಎಲ್ಲಾ)
+                </button>
+                <button
+                  onClick={() => setAllLettersFilter('vowels')}
+                  className={`flex-1 py-2.5 rounded-xl text-xs font-extrabold transition-all min-h-[38px] ${
+                    allLettersFilter === 'vowels'
+                      ? 'bg-white text-[#de2910] shadow-sm border border-slate-200/30'
+                      : 'text-slate-500 hover:text-slate-800'
+                  }`}
+                >
+                  Vowels (ಸ್ವರಗಳು)
+                </button>
+                <button
+                  onClick={() => setAllLettersFilter('consonants')}
+                  className={`flex-1 py-2.5 rounded-xl text-xs font-extrabold transition-all min-h-[38px] ${
+                    allLettersFilter === 'consonants'
+                      ? 'bg-white text-[#de2910] shadow-sm border border-slate-200/30'
+                      : 'text-slate-500 hover:text-slate-800'
+                  }`}
+                >
+                  Consonants (ವ್ಯಂಜನಗಳು)
+                </button>
+              </div>
+
+              <div className="flex flex-col gap-5 max-h-[360px] overflow-y-auto pr-1">
+                {/* Vowels Grid */}
+                {(allLettersFilter === 'all' || allLettersFilter === 'vowels') && (
+                  <div className="flex flex-col gap-2">
+                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block">
+                      Vowels &amp; Yogavahas (ಸ್ವರಗಳು - ೧೫):
+                    </span>
+                    <div className="grid grid-cols-5 gap-2">
+                      {vowelLetters.map((char) => {
+                        const isSelected = selectedGuideItem === char;
+                        return (
+                          <button
+                            key={char}
+                            onClick={() => handleItemSelect(char)}
+                            className={`aspect-square rounded-xl flex items-center justify-center transition-all border text-lg font-black min-h-[48px] ${
+                              isSelected
+                                ? 'bg-[#de2910] border-red-600 text-white shadow-sm ring-2 ring-red-400 ring-offset-1'
+                                : 'bg-slate-50 border-slate-200/60 text-slate-800 hover:bg-red-50/50 hover:border-red-200'
+                            }`}
+                          >
+                            {char}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                {/* Consonants Groups */}
+                {(allLettersFilter === 'all' || allLettersFilter === 'consonants') && (
+                  <div className="flex flex-col gap-4">
+                    <div className="border-t border-slate-100 pt-3">
+                      <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-2">
+                        Consonants (ವ್ಯಂಜನಗಳು - ೩೪):
+                      </span>
+                      <div className="flex flex-col gap-3.5">
+                        {groupedConsonantLetters.map((group, groupIdx) => {
+                          const isGroupOf5 = groupIdx < 5;
+                          return (
+                            <div key={groupIdx} className="flex flex-col gap-1 bg-slate-50/30 p-2 rounded-xl border border-slate-100">
+                              <span className="text-[9px] font-bold text-amber-800/80 uppercase tracking-wider">
+                                {groupIdx < 5 ? `Classified Group ${groupIdx + 1} (ವರ್ಗ ${groupIdx + 1})` : groupIdx < 7 ? `Unclassified Group ${groupIdx - 4} (ಅವರ್ಗೀಯ)` : 'Special Letter'}
+                              </span>
+                              <div className={`grid ${isGroupOf5 ? 'grid-cols-5' : 'grid-cols-4'} gap-2`}>
+                                {group.map((char) => {
+                                  const isSelected = selectedGuideItem === char;
+                                  return (
+                                    <button
+                                      key={char}
+                                      onClick={() => handleItemSelect(char)}
+                                      className={`aspect-square rounded-xl flex items-center justify-center transition-all border text-lg font-black min-h-[48px] ${
+                                        isSelected
+                                          ? 'bg-[#de2910] border-red-600 text-white shadow-sm ring-2 ring-red-400 ring-offset-1'
+                                          : 'bg-slate-50 border-slate-200/60 text-slate-800 hover:bg-red-50/50 hover:border-red-200'
+                                      }`}
+                                    >
+                                      {char}
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </>
           )}

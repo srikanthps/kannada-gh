@@ -4,7 +4,7 @@ import KagunithaTab from './components/KagunithaTab';
 import OttaksharaTab from './components/OttaksharaTab';
 import ReadingTab from './components/ReadingTab';
 import ScribblePadTab from './components/ScribblePadTab';
-import { BookOpen, Compass, Award, Heart, Edit3, Sparkles } from 'lucide-react';
+import { BookOpen, Compass, Award, Heart, Edit3, Sparkles, ArrowLeft } from 'lucide-react';
 
 type TabType = 'alphabet' | 'kagunitha' | 'ottakshara' | 'reading' | 'canvas';
 
@@ -40,10 +40,10 @@ export default function App() {
                     onClick={() => setActiveTab(null)}
                     className="text-2xl font-extrabold tracking-tight text-amber-950 font-sans cursor-pointer hover:text-amber-800 transition"
                   >
-                    Kannada Kali
+                    Kannada Kaliyona
                   </h1>
                   <span className="text-xs font-bold bg-amber-100 text-amber-950 border border-amber-200/50 px-2.5 py-0.5 rounded-full font-sans">
-                    ಕನ್ನಡ ಕಲಿ
+                    ಕನ್ನಡ ಕಲಿಯೋಣ
                   </span>
                 </div>
               </div>
@@ -54,9 +54,10 @@ export default function App() {
               <button
                 id="btn-nav-home"
                 onClick={() => setActiveTab(null)}
-                className="flex items-center gap-2 px-5 py-2.5 bg-amber-50 border border-amber-200/60 hover:bg-amber-100 text-amber-950 text-xs font-extrabold rounded-2xl transition shadow-sm"
+                className="flex items-center gap-2 px-6 py-3 bg-[#de2910] hover:bg-[#c2200c] text-white text-xs sm:text-sm font-black rounded-2xl transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 border border-red-600/30"
               >
-                <span>← Back to Main Menu (ಮುಖಪುಟಕ್ಕೆ)</span>
+                <ArrowLeft size={16} className="stroke-[3px]" />
+                <span>Back to Main Menu (ಮುಖಪುಟಕ್ಕೆ ಹಿಂತಿರುಗಿ)</span>
               </button>
             )}
           </div>
