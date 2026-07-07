@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { sajaatiyaExamples, vijaatiyaExamples, arkavattuExamples, ottaksharaList } from '../data/ottakshara';
 import PracticeCanvas from './PracticeCanvas';
-import { Volume2, ChevronRight, PenTool, Award, Compass, Heart } from 'lucide-react';
+import { Volume2, ChevronRight, ChevronLeft, PenTool, Award, Compass, Heart } from 'lucide-react';
 
 export default function OttaksharaTab() {
   const [activeSubTab, setActiveSubTab] = useState<'sajaatiya' | 'vijaatiya' | 'arkavattu'>('sajaatiya');
   const [selectedWord, setSelectedWord] = useState<any>(sajaatiyaExamples[0]);
   const [ttsState, setTtsState] = useState<'idle' | 'playing' | 'error'>('idle');
   const [ttsMessage, setTtsMessage] = useState<string | null>(null);
+  const [wordPage, setWordPage] = useState(0);
 
   const handleSubTabChange = (tab: 'sajaatiya' | 'vijaatiya' | 'arkavattu') => {
     setActiveSubTab(tab);
+    setWordPage(0);
     if (tab === 'sajaatiya') {
       setSelectedWord(sajaatiyaExamples[0]);
     } else if (tab === 'vijaatiya') {
@@ -54,6 +56,34 @@ export default function OttaksharaTab() {
     } catch (e) {
       setTtsState('error');
       setTimeout(() => setTtsState('idle'), 3000);
+    }
+  };
+
+  const activeExamples = activeSubTab === 'sajaatiya'
+    ? sajaatiyaExamples
+    : activeSubTab === 'vijaatiya'
+      ? vijaatiyaExamples
+      : arkavattuExamples;
+
+  const wordsPerPage = 6;
+  const totalWordPages = Math.ceil(activeExamples.length / wordsPerPage);
+  const paginatedExamples = activeExamples.slice(wordPage * wordsPerPage, (wordPage + 1) * wordsPerPage);
+
+  const handleNextWordPage = () => {
+    if (wordPage < totalWordPages - 1) {
+      const nextPage = wordPage + 1;
+      setWordPage(nextPage);
+      setSelectedWord(activeExamples[nextPage * wordsPerPage]);
+      playTTS(activeExamples[nextPage * wordsPerPage].word);
+    }
+  };
+
+  const handlePrevWordPage = () => {
+    if (wordPage > 0) {
+      const prevPage = wordPage - 1;
+      setWordPage(prevPage);
+      setSelectedWord(activeExamples[prevPage * wordsPerPage]);
+      playTTS(activeExamples[prevPage * wordsPerPage].word);
     }
   };
 
@@ -139,7 +169,7 @@ export default function OttaksharaTab() {
 
           {/* Interactive Word Cards Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            {(activeSubTab === 'sajaatiya' ? sajaatiyaExamples : activeSubTab === 'vijaatiya' ? vijaatiyaExamples : arkavattuExamples).map((ex) => {
+            {paginatedExamples.map((ex) => {
               const isSelected = selectedWord.word === ex.word;
               return (
                 <button
@@ -172,6 +202,41 @@ export default function OttaksharaTab() {
               );
             })}
           </div>
+
+          {/* Pagination Controls */}
+          {totalWordPages > 1 && (
+            <div className="flex items-center justify-between bg-amber-50/30 border border-amber-100/60 p-3 rounded-2xl">
+              <button
+                onClick={handlePrevWordPage}
+                disabled={wordPage === 0}
+                className={`px-3 py-2 rounded-xl text-xs font-bold border transition-all flex items-center gap-1 ${
+                  wordPage === 0
+                    ? 'opacity-30 cursor-not-allowed bg-slate-100 text-slate-400 border-slate-200'
+                    : 'bg-white border-amber-200 text-amber-950 hover:bg-amber-100/40 hover:border-amber-300 active:scale-[0.98]'
+                }`}
+              >
+                <ChevronLeft size={14} className="stroke-[2.5px]" />
+                <span>Prev Words</span>
+              </button>
+              
+              <span className="text-[11px] font-bold text-amber-900 font-mono">
+                Set {wordPage + 1} of {totalWordPages} ({wordPage * wordsPerPage + 1}-{Math.min((wordPage + 1) * wordsPerPage, activeExamples.length)} of {activeExamples.length})
+              </span>
+
+              <button
+                onClick={handleNextWordPage}
+                disabled={wordPage === totalWordPages - 1}
+                className={`px-3 py-2 rounded-xl text-xs font-bold border transition-all flex items-center gap-1 ${
+                  wordPage === totalWordPages - 1
+                    ? 'opacity-30 cursor-not-allowed bg-slate-100 text-slate-400 border-slate-200'
+                    : 'bg-white border-amber-200 text-amber-950 hover:bg-amber-100/40 hover:border-amber-300 active:scale-[0.98]'
+                }`}
+              >
+                <span>Next Words</span>
+                <ChevronRight size={14} className="stroke-[2.5px]" />
+              </button>
+            </div>
+          )}
 
           {/* Core Ottu Symbols cheat sheet */}
           {activeSubTab === 'sajaatiya' && (

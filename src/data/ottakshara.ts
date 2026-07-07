@@ -2,6 +2,13 @@ import { OttaksharaItem } from '../types';
 
 export const sajaatiyaExamples = [
   {
+    word: 'ಅಪ್ಪ',
+    transliteration: 'Appa',
+    meaning: 'Father',
+    breakdown: 'ಅ + ಪ (pa) + ್ಪ (pa-ottu)',
+    description: 'Double "p" sound. One of the most essential words in family relations, using the ಪ-ಒತ್ತು.'
+  },
+  {
     word: 'ಅಕ್ಕ',
     transliteration: 'Akka',
     meaning: 'Elder sister',
@@ -44,18 +51,74 @@ export const sajaatiyaExamples = [
     description: 'Double "b" sound, common in Kannada culture.'
   },
   {
-    word: 'ನೆಲ್ಲಿಕಾಯಿ',
-    transliteration: 'Nellikayi',
-    meaning: 'Gooseberry',
-    breakdown: 'ನೆ (ne) + ಲಿ (li) + ್ಲಿ (li-ottu with ee-sign) + ಕಾ + ಯಿ',
-    description: 'Double "l" sound.'
+    word: 'ಹಣ್ಣು',
+    transliteration: 'Hannu',
+    meaning: 'Fruit',
+    breakdown: 'ಹ + ಣ (na) + ್ಣು (na-ottu with u vowel sign)',
+    description: 'Double "retroflex n" sound. One of the most common words in daily Kannada.'
   },
   {
-    word: 'ಮಗು',
-    transliteration: 'Magu',
-    meaning: 'Baby / Child (No ottu)',
-    breakdown: 'ಮ + ಗು (No ottu)',
-    description: 'Simple word shown for comparison. No consonant doubling here.'
+    word: 'ಹಗ್ಗ',
+    transliteration: 'Hagga',
+    meaning: 'Rope',
+    breakdown: 'ಹ + ಗ (ga) + ್ಗ (ga-ottu)',
+    description: 'Double "g" sound. Notice the ಗ-ಒತ್ತು underneath the main ಗ letter.'
+  },
+  {
+    word: 'ಗೆಜ್ಜೆ',
+    transliteration: 'Gejje',
+    meaning: 'Anklet bells',
+    breakdown: 'ಗೆ (ge) + ಜ (ja) + ್ಜೆ (ja-ottu with e vowel sign)',
+    description: 'Double "j" sound, representing the traditional musical anklets.'
+  },
+  {
+    word: 'ಕಣ್ಣು',
+    transliteration: 'Kannu',
+    meaning: 'Eye',
+    breakdown: 'ಕ + ಣ (na) + ್ಣು (na-ottu with u vowel sign)',
+    description: 'Double "retroflex n" sound. Essential body part word in Kannada.'
+  },
+  {
+    word: 'ಹಲ್ಲು',
+    transliteration: 'Hallu',
+    meaning: 'Tooth',
+    breakdown: 'ಹ + ಲ (la) + ್ಲು (la-ottu with u vowel sign)',
+    description: 'Double "l" sound. Another daily usage word with ಲ-ಒತ್ತು.'
+  },
+  {
+    word: 'ಬೆಟ್ಟ',
+    transliteration: 'Betta',
+    meaning: 'Hill / Mountain',
+    breakdown: 'ಬೆ (be) + ಟ (ta) + ್ಟ (ta-retroflex-ottu)',
+    description: 'Double "retroflex t" sound. Prominent geographic term in Kannada.'
+  },
+  {
+    word: 'ಲಡ್ಡು',
+    transliteration: 'Laddu',
+    meaning: 'Sweet Laddu',
+    breakdown: 'ಲ + ಡ (da) + ್ಡು (da-retroflex-ottu with u vowel sign)',
+    description: 'Double "retroflex d" sound. Popular sweet in South India.'
+  },
+  {
+    word: 'ಮುದ್ದು',
+    transliteration: 'Muddu',
+    meaning: 'Cute / Darling',
+    breakdown: 'ಮು (mu) + ದ (da) + ್ದು (da-ottu with u vowel sign)',
+    description: 'Double "d" sound, used to express cuteness or affection.'
+  },
+  {
+    word: 'ತುಪ್ಪ',
+    transliteration: 'Thuppa',
+    meaning: 'Ghee / Clarified Butter',
+    breakdown: 'ತು (thu) + ಪ (pa) + ್ಪು (pa-ottu with u vowel sign)',
+    description: 'Double "p" sound. Highlight of Karnataka meals!'
+  },
+  {
+    word: 'ಅಜ್ಜಿ',
+    transliteration: 'Ajji',
+    meaning: 'Grandmother',
+    breakdown: 'ಅ + ಜ (ja) + ್ಜಿ (ja-ottu with i vowel sign)',
+    description: 'Double "j" sound, representing the beloved grandmother.'
   }
 ];
 
@@ -101,6 +164,55 @@ export const vijaatiyaExamples = [
     meaning: 'Picture / Movie',
     breakdown: 'ಚಿ (chi) + ತ (ta) + ್ರ (ra-ottu)',
     description: 'The conjunct "tra". The letter is "ta" with the ra-ottu (slash/hook at the bottom).'
+  },
+  {
+    word: 'ರಕ್ತ',
+    transliteration: 'Raktha',
+    meaning: 'Blood',
+    breakdown: 'ರ + ಕ (ka) + ್ತ (ta-ottu)',
+    description: 'The conjunct "ktha". Letter is "ka", and "ta-ottu" is placed beneath.'
+  },
+  {
+    word: 'ಸತ್ಯ',
+    transliteration: 'Sathya',
+    meaning: 'Truth',
+    breakdown: 'ಸ + ತ (ta) + ್ಯ (ya-ottu)',
+    description: 'The conjunct "thya". Letter is "ta", and "ya-ottu" is attached on the right side.'
+  },
+  {
+    word: 'ವಿಶ್ವ',
+    transliteration: 'Vishwa',
+    meaning: 'World / Universe',
+    breakdown: 'ವಿ (vi) + ಶ (sha) + ್ವ (va-ottu)',
+    description: 'The conjunct "shwa". Letter is "sha", and "va-ottu" is placed beneath.'
+  },
+  {
+    word: 'ನಿತ್ಯ',
+    transliteration: 'Nithya',
+    meaning: 'Daily / Constant',
+    breakdown: 'ನಿ (ni) + ತ (ta) + ್ಯ (ya-ottu)',
+    description: 'The conjunct "thya" in another common term meaning daily routine.'
+  },
+  {
+    word: 'ಪತ್ರ',
+    transliteration: 'Pathra',
+    meaning: 'Letter / Document / Leaf',
+    breakdown: 'ಪ + ತ (ta) + ್ರ (ra-ottu)',
+    description: 'The conjunct "thra" combining "ta" with the bottom diagonal hook "ra-ottu".'
+  },
+  {
+    word: 'ಪ್ರಾಣಿ',
+    transliteration: 'Prāni',
+    meaning: 'Animal',
+    breakdown: 'ಪ (pa) + ್ರ (ra-ottu) = ಪ್ರಾ + ಣಿ',
+    description: 'The conjunct "pra" combining "pa" with "ra-ottu" at the start of the word.'
+  },
+  {
+    word: 'ಕಾವ್ಯ',
+    transliteration: 'Kāvya',
+    meaning: 'Poetry',
+    breakdown: 'ಕಾ (kaa) + ವ (va) + ್ಯ (ya-ottu)',
+    description: 'The conjunct "vya" combining "va" with "ya-ottu" on the right side.'
   }
 ];
 
@@ -181,7 +293,57 @@ export const ottaksharaList: OttaksharaItem[] = [
     transliteration: 'g',
     examples: [
       { word: 'ಮೊಗ್ಗು', breakdown: 'ಮೊ + ಗ + ್ಗು', transliteration: 'Moggu', meaning: 'Flower bud' },
-      { word: 'ಮಾರ್ಗ', breakdown: 'ಮಾ + ರ್ಗ (Arkavattu)', transliteration: 'Marga', meaning: 'Path (combines r + g)' }
+      { word: 'ಹಗ್ಗ', breakdown: 'ಹ + ಗ + ್ಗ', transliteration: 'Hagga', meaning: 'Rope' }
+    ]
+  },
+  {
+    letter: 'ಚ (cha)',
+    ottu: '್ಚ',
+    name: 'Cha-ottu',
+    transliteration: 'ch',
+    examples: [
+      { word: 'ಹೆಚ್ಚು', breakdown: 'ಹೆ + ಚ + ್ಚು', transliteration: 'Hechchu', meaning: 'More / Excess' },
+      { word: 'ಪಚ್ಚೆ', breakdown: 'ಪ + ಚ + ್ಚೆ', transliteration: 'Pachche', meaning: 'Emerald / Green' }
+    ]
+  },
+  {
+    letter: 'ಜ (ja)',
+    ottu: '್ಜ',
+    name: 'Ja-ottu',
+    transliteration: 'j',
+    examples: [
+      { word: 'ಗೆಜ್ಜೆ', breakdown: 'ಗೆ + ಜ + ್ಜೆ', transliteration: 'Gejje', meaning: 'Anklet bells' },
+      { word: 'ಬಜ್ಜಿ', breakdown: 'ಬ + ಜ + ್ಜಿ', transliteration: 'Bajji', meaning: 'Fritters' }
+    ]
+  },
+  {
+    letter: 'ಟ (ta)',
+    ottu: '್ಟ',
+    name: 'Ta-retroflex-ottu',
+    transliteration: 'tt',
+    examples: [
+      { word: 'ಪಟ್ಟಿ', breakdown: 'ಪ + ಟ + ್ಟಿ', transliteration: 'Patti', meaning: 'List / Band' },
+      { word: 'ಬೆಟ್ಟ', breakdown: 'ಬೆ + ಟ + ್ಟ', transliteration: 'Betta', meaning: 'Hill / Mountain' }
+    ]
+  },
+  {
+    letter: 'ಡ (da)',
+    ottu: '್ಡ',
+    name: 'Da-retroflex-ottu',
+    transliteration: 'dd',
+    examples: [
+      { word: 'ಲಡ್ಡು', breakdown: 'ಲ + ಡ + ್ಡು', transliteration: 'Laddu', meaning: 'Sweet Laddu' },
+      { word: 'ಗಡ್ಡ', breakdown: 'ಗ + ಡ + ್ಡ', transliteration: 'Gadda', meaning: 'Beard' }
+    ]
+  },
+  {
+    letter: 'ಣ (na)',
+    ottu: '್ಣ',
+    name: 'Na-retroflex-ottu',
+    transliteration: 'nn',
+    examples: [
+      { word: 'ಹಣ್ಣು', breakdown: 'ಹ + ಣ + ್ಣು', transliteration: 'Hannu', meaning: 'Fruit' },
+      { word: 'ಬಣ್ಣ', breakdown: 'ಬ + ಣ + ್ಣ', transliteration: 'Banna', meaning: 'Color' }
     ]
   },
   {
@@ -195,6 +357,16 @@ export const ottaksharaList: OttaksharaItem[] = [
     ]
   },
   {
+    letter: 'ದ (da)',
+    ottu: '್ದ',
+    name: 'Da-ottu',
+    transliteration: 'd',
+    examples: [
+      { word: 'ಮುದ್ದು', breakdown: 'ಮು + ದ + ್ದು', transliteration: 'Muddu', meaning: 'Cute' },
+      { word: 'ಎದ್ದು', breakdown: 'ಎ + ದ + ್ದು', transliteration: 'Eddu', meaning: 'Woken up' }
+    ]
+  },
+  {
     letter: 'ನ (na)',
     ottu: '್ನ',
     name: 'Na-ottu',
@@ -202,6 +374,26 @@ export const ottaksharaList: OttaksharaItem[] = [
     examples: [
       { word: 'ಅನ್ನ', breakdown: 'ಅ + ನ + ್ನ', transliteration: 'Anna', meaning: 'Cooked Rice' },
       { word: 'ಚಿನ್ನ', breakdown: 'ಚಿ + ನ + ್ನ', transliteration: 'Chinna', meaning: 'Gold / Sweetheart' }
+    ]
+  },
+  {
+    letter: 'ಪ (pa)',
+    ottu: '್ಪ',
+    name: 'Pa-ottu',
+    transliteration: 'p',
+    examples: [
+      { word: 'ಕಪ್ಪೆ', breakdown: 'ಕ + ಪ + ್ಪೆ', transliteration: 'Kappe', meaning: 'Frog' },
+      { word: 'ತಪ್ಪು', breakdown: 'ತ + ಪ + ್ಪು', transliteration: 'Tappu', meaning: 'Mistake / Wrong' }
+    ]
+  },
+  {
+    letter: 'ಬ (ba)',
+    ottu: '್ಬ',
+    name: 'Ba-ottu',
+    transliteration: 'b',
+    examples: [
+      { word: 'ಹಬ್ಬ', breakdown: 'ಹ + ಬ + ್ಬ', transliteration: 'Habba', meaning: 'Festival' },
+      { word: 'ಡಬ್ಬ', breakdown: 'ಡ + ಬ + ್ಬ', transliteration: 'Dabba', meaning: 'Box / Tin' }
     ]
   },
   {
@@ -240,8 +432,8 @@ export const ottaksharaList: OttaksharaItem[] = [
     name: 'La-ottu',
     transliteration: 'l',
     examples: [
-      { word: 'ಗೊಂಬೆ', breakdown: 'ಗೊ + ಬ + ್ಬ (Example of Ba-ottu, let\'s use ಬೆಕ್ಕು/ಕಲ್ಲು)', transliteration: 'Gobbe', meaning: 'Doll (uses Ba-ottu)' },
-      { word: 'ಕಲ್ಲು', breakdown: 'ಕ + ಲ + ್ಲು', transliteration: 'Kallu', meaning: 'Stone / Rock' }
+      { word: 'ಕಲ್ಲು', breakdown: 'ಕ + ಲ + ್ಲು', transliteration: 'Kallu', meaning: 'Stone / Rock' },
+      { word: 'ಹಲ್ಲು', breakdown: 'ಹ + ಲ + ್ಲು', transliteration: 'Hallu', meaning: 'Tooth' }
     ]
   },
   {
@@ -262,6 +454,16 @@ export const ottaksharaList: OttaksharaItem[] = [
     examples: [
       { word: 'ಬಸ್ಸು', breakdown: 'ಬ + ಸ + ್ಸು', transliteration: 'Bassu', meaning: 'Bus' },
       { word: 'ಮನಸ್ಸು', breakdown: 'ಮ + ನ + ಸ + ್ಸು', transliteration: 'Manassu', meaning: 'Mind / Heart' }
+    ]
+  },
+  {
+    letter: 'ಳ (la-retroflex)',
+    ottu: '್ಳ',
+    name: 'La-retroflex-ottu',
+    transliteration: 'll',
+    examples: [
+      { word: 'ಬೆಳ್ಳಿ', breakdown: 'ಬೆ + ಳ + ್ಳಿ', transliteration: 'Belli', meaning: 'Silver' },
+      { word: 'ಸುಳ್ಳು', breakdown: 'ಸು + ಳ + ್ಳು', transliteration: 'Sullu', meaning: 'Lie / Falsehood' }
     ]
   }
 ];

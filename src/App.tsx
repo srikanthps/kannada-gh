@@ -46,6 +46,11 @@ export default function App() {
                     ಕನ್ನಡ ಕಲಿಯೋಣ
                   </span>
                 </div>
+                <p className="text-xs text-slate-500 font-medium mt-1">
+                  <span className="font-bold text-amber-900">ಅಜ್ಜಿಯ ಕಥೆಗಳು ಓದಲು.</span>
+                  <span className="mx-1.5 text-slate-300">|</span>
+                  <span>Let's learn Kannada, to read Grandma's stories</span>
+                </p>
               </div>
             </div>
 
@@ -178,7 +183,7 @@ export default function App() {
       <footer className="mt-auto border-t border-slate-200/60 bg-white py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 font-medium">
           <div className="flex items-center gap-2">
-            <span>© 2026 Kannada Kali</span>
+            <span>© 2026 Kannada Kaliyona</span>
             <span className="text-slate-300">|</span>
             <span className="text-amber-800">ಸಿರಿಗನ್ನಡಂ ಗೆಲ್ಗೆ, ಸಿರಿಗನ್ನಡಂ ಬಾಳ್ಗೆ!</span>
           </div>
