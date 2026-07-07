@@ -250,7 +250,7 @@ export default function ScribblePadTab() {
           <div className="bg-amber-50/45 p-6 rounded-2xl border border-amber-100/60 flex flex-col md:flex-row items-center justify-between gap-5 w-full">
             <div className="flex flex-col md:flex-row items-center gap-5 text-center md:text-left w-full">
               {/* Large display card */}
-              <div className="w-24 h-24 bg-white border-2 border-amber-200 rounded-3xl flex items-center justify-center text-4xl font-extrabold text-amber-950 shadow-xs select-none">
+              <div className="min-w-[6rem] h-24 px-6 bg-white border-2 border-amber-200 rounded-3xl flex items-center justify-center text-4xl font-extrabold text-amber-950 shadow-xs select-none whitespace-nowrap">
                 {selectedWord.word}
               </div>
               

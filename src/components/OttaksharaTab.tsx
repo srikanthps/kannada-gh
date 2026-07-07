@@ -144,15 +144,21 @@ export default function OttaksharaTab() {
               return (
                 <button
                   key={ex.word}
-                  onClick={() => setSelectedWord(ex)}
-                  className={`flex flex-col p-4 rounded-xl border text-left transition-all ${
+                  onClick={() => {
+                    setSelectedWord(ex);
+                    playTTS(ex.word);
+                  }}
+                  className={`flex flex-col p-4 rounded-xl border text-left transition-all group ${
                     isSelected
                       ? 'bg-amber-500/10 border-amber-500/40 text-amber-950 shadow-sm ring-1 ring-amber-400'
                       : 'bg-white border-slate-200/60 hover:bg-amber-50/10 hover:border-amber-200'
                   }`}
                 >
                   <div className="flex items-center justify-between w-full mb-1">
-                    <span className="text-2xl font-bold font-sans text-slate-800">{ex.word}</span>
+                    <span className="text-2xl font-bold font-sans text-slate-800 flex items-center gap-1.5">
+                      <span>{ex.word}</span>
+                      <Volume2 size={16} className={`opacity-60 group-hover:opacity-100 transition-opacity ${isSelected ? 'text-amber-800' : 'text-slate-400'}`} />
+                    </span>
                     <span className="text-xs font-semibold text-amber-800 bg-amber-50 border border-amber-100 px-2 py-0.5 rounded-full font-mono">
                       /{ex.transliteration}/
                     </span>
@@ -171,21 +177,29 @@ export default function OttaksharaTab() {
           {activeSubTab === 'sajaatiya' && (
             <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
               <span className="text-xs font-bold text-slate-700 uppercase tracking-wide block mb-3 border-b border-slate-100 pb-2">
-                Common Ottu Sign Transformations (ಒತ್ತಕ್ಷರ ಚಿಹ್ನೆಗಳು)
+                Common Ottu Sign Transformations (ಒತ್ತಕ್ಷರ ಚಿಹ್ನೆಗಳು) — Click to Hear Sound
               </span>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                {ottaksharaList.map((item) => (
-                  <div
-                    key={item.letter}
-                    className="flex items-center gap-2.5 p-2.5 rounded-lg border border-slate-100 bg-slate-50/50 hover:bg-slate-50 transition"
-                  >
-                    <span className="text-base font-bold text-slate-700">{item.letter.split(' ')[0]}</span>
-                    <span className="text-slate-400 font-serif">→</span>
-                    <span className="text-2xl font-bold text-amber-600 bg-white border border-slate-100 p-1 rounded w-10 text-center select-none shadow-sm" title={item.name}>
-                      {item.ottu.split(' ')[0]}
-                    </span>
-                  </div>
-                ))}
+                {ottaksharaList.map((item) => {
+                  const rawLetter = item.letter.split(' ')[0];
+                  return (
+                    <button
+                      key={item.letter}
+                      onClick={() => playTTS(`${rawLetter} ಒತ್ತು`)}
+                      className="flex items-center justify-between p-2.5 rounded-xl border border-slate-150 bg-slate-50/50 hover:bg-amber-50/40 hover:border-amber-200 transition text-left group"
+                      title={`Click to hear ${item.name}`}
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="text-base font-bold text-slate-700">{rawLetter}</span>
+                        <span className="text-slate-400 font-serif">→</span>
+                        <span className="text-2xl font-bold text-amber-600 bg-white border border-slate-100 p-1 rounded w-10 text-center select-none shadow-sm">
+                          {item.ottu.split(' ')[0]}
+                        </span>
+                      </div>
+                      <Volume2 size={14} className="text-slate-400 group-hover:text-amber-600 transition-colors" />
+                    </button>
+                  );
+                })}
               </div>
             </div>
           )}

@@ -1,20 +1,5 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Kannada Kaliyona (ಕನ್ನಡ ಕಲಿಯೋಣ)
 
-# Run and deploy your AI Studio app
+Kannada Kaliyona is an interactive web-based tutorial designed to help learners master the beautiful Kannada language. It offers structured interactive learning modules covering Kannada vowels, consonants, kagunitha combinations, conjuncts (ottakshara), arkavattu, interactive flashcards, dynamic spelling equations, and real-time pronunciation support.
 
-This contains everything you need to run your app locally.
-
-View your app in AI Studio: https://ai.studio/apps/cacc9cbd-8e25-4038-8f77-7a8df2a09329
-
-## Run Locally
-
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Visit the live website at: [https://srikanthps.github.io/kannada-gh/](https://srikanthps.github.io/kannada-gh/)
